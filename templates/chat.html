@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build a Design System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="img/icon_perez.png" type="image/x-icon">
+     <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/static/img/chat_logo.png" width="50px" alt="">
+                
+                <button class="close-sidebar" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+                <button class="start-new-btn" id="uploadDocumentBtn">
+                    <i class="fas fa-plus"></i>
+                    Upload Document
+                    <span class="shortcut"><i class="fas fa-file"></i></span>
+                </button>
+
+                <div class="nav-item" id="libraryBtn">
+                    <i class="fas fa-book"></i>
+                    Documents
+                </div>
+                
+                <a style="text-decoration: none;" href="doc.html"> 
+                <div class="nav-item">
+                    <i class="fas fa-layer-group"></i>
+                    Document House
+                </div>
+                </a>
+
+                <div class="recents-section">
+                    <div class="recents-header">Recents</div>
+                    
+                    <div class="recent-item design">
+                        Build a Design Syste...
+                    </div>
+                    
+                    <div class="recent-item ux">
+                        User Experience (UX...
+                    </div>
+                    
+                    <div class="recent-item holes">
+                        Black Holes Explaine...
+                    </div>
+                    
+                    <div class="recent-item mixtral">
+                        Mixtral 8x7B Archive...
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="upgrade-section">
+                    <div class="upgrade-title">Upgrade Plan</div>
+                    <div class="upgrade-info">1 Document left for this month</div>
+                    <button class="upgrade-btn">Upgrade to Pro</button>
+                </div>
+
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar">CL</div>
+                    <div class="user-name">Cyber Large</div>
+                    <i class="fas fa-chevron-down user-chevron"></i>
+                    
+                    <!-- User Dropdown Menu -->
+                    <div class="user-dropdown" id="userDropdown">
+                       
+                       <a href="#"> 
+                        <div class="dropdown-item">
+                            <i class="fas fa-credit-card"></i>
+                            Billing
+                        </div>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sign Out
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+    <div class="header">
+            <button class="hamburger" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search documents..." />
+            </div>
+        </div> 
+
+       
+        <div class="app-container">
+        <!-- Chat Interface -->
+        <div class="chat-interface">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <!-- Document Info -->
+                <div class="document-info">
+                    <div class="document-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="document-details">
+                        <h3>Build a Design System! Ep. 1.pdf</h3>
+                        <p>Understanding Human Decision Making</p>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="tab-navigation">
+                    <button class="tab-btn active" data-tab="chat">
+                        <i class="fas fa-comments"></i> Chat
+                    </button>
+                    <button class="tab-btn" data-tab="summary">
+                        <i class="fas fa-file-text"></i> Summary
+                    </button>
+                    <button class="tab-btn" data-tab="flashcards">
+                        <i class="fas fa-layer-group"></i> Flashcards
+                    </button>
+                    <button class="tab-btn" data-tab="quizzes">
+                        <i class="fas fa-question-circle"></i> Quizzes
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Tab Content -->
+            <div class="tab-content active" id="chat">
+                <div class="chat-content">
+                    <!-- AI Message -->
+                    <div class="chat-message ai">
+                        <div class="message-avatar ai">P</div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                Hello! I've analyzed your document "Understanding Human Decision Making." I can help you explore the key concepts about cognitive biases, emotional influences on decisions, and their applications in UX design. What would you like to know more about?
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+
+                    <!-- User Message -->
+                    <div class="chat-message user">
+                        <div class="message-avatar user">U</div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                Can you explain the key cognitive biases mentioned in the document?
+                            </div>
+                            <div class="message-time">2 min ago</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Response -->
+                    <div class="chat-message ai">
+                        <div class="message-avatar ai">P</div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                Based on the document, there are two main cognitive biases discussed:
+
+                                <br><br><strong>1. Anchoring Bias:</strong> This is when people rely heavily on the first piece of information they encounter. In UX design, this means users often make decisions based on the first option they see.
+
+                                <br><br><strong>2. Confirmation Bias:</strong> People tend to search for and favor information that confirms their existing beliefs. This affects how users interact with interfaces and process new information.
+
+                                <br><br>These biases are crucial for UX designers to understand because they help predict user behavior and create more intuitive interfaces.
+                            </div>
+                            <div class="message-time">1 min ago</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input-section">
+                    <div class="input-container">
+                        <textarea class="chat-textarea" placeholder="Ask about the document..." rows="1"></textarea>
+                        <button class="send-button">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Tab Content -->
+            <div class="tab-content" id="summary">
+                <div class="summary-content">
+                    <div class="summary-section">
+                        <h3><i class="fas fa-bullseye"></i>Goal</h3>
+                        <div class="summary-text">
+                            The goal of this discussion is to explore the factors, models, and principles that guide human decision-making and their application in UX design to improve user engagement and satisfaction.
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <h3><i class="fas fa-info-circle"></i>Introduction</h3>
+                        <div class="summary-text">
+                            Human decision-making is a complex cognitive process that influences every aspect of life, including how users interact with digital interfaces. In UX design, understanding how people analyze, evaluate, and decide helps create intuitive, user-friendly experiences.
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <h3><i class="fas fa-key"></i>Key Concepts</h3>
+                        <ul class="key-points">
+                            <li>Cognitive Biases: Mental shortcuts that influence decision-making (e.g., anchoring bias and confirmation bias)</li>
+                            <li>Emotions: Emotional states can override rational thinking and sway decisions</li>
+                            <li>User Experience Applications: How these concepts apply to creating better digital interfaces</li>
+                            <li>Decision-Making Models: Frameworks for understanding how people make choices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flashcards Tab Content -->
+            <div class="tab-content" id="flashcards">
+                <div class="flashcard-content">
+                    <div class="flashcard-progress">Card 1 of 5</div>
+                    
+                    <div class="flashcard" onclick="flipCard()">
+                        <div class="flashcard-inner">
+                            <strong>What is Anchoring Bias?</strong>
+                            <br><br>
+                            <small>Click to reveal answer</small>
+                        </div>
+                    </div>
+
+                    <div class="flashcard-controls">
+                        <button class="flashcard-btn secondary">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="flashcard-btn">
+                            <i class="fas fa-arrow-right"></i> Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quizzes Tab Content -->
+            <div class="tab-content" id="quizzes">
+                <div class="quiz-content">
+                    <div class="quiz-question">
+                        <div class="question-header">
+                            <div class="question-number">Question 1</div>
+                        </div>
+                        
+                        <div class="question-text">
+                            Which cognitive bias involves relying heavily on the first piece of information encountered?
+                        </div>
+
+                        <div class="answer-options">
+                            <div class="answer-option" onclick="selectOption(this)">
+                                <div class="option-letter">A</div>
+                                <span>Confirmation Bias</span>
+                            </div>
+                            <div class="answer-option" onclick="selectOption(this)">
+                                <div class="option-letter">B</div>
+                                <span>Anchoring Bias</span>
+                            </div>
+                            <div class="answer-option" onclick="selectOption(this)">
+                                <div class="option-letter">C</div>
+                                <span>Availability Bias</span>
+                            </div>
+                            <div class="answer-option" onclick="selectOption(this)">
+                                <div class="option-letter">D</div>
+                                <span>Recency Bias</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-controls">
+                        <div class="quiz-progress">Question 1 of 8</div>
+                        <button class="quiz-btn">Next Question</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+        <!-- Document Library Interface -->
+        <div class="document-library" id="documentLibrary">
+            <div class="library-modal">
+                <div class="library-header">
+                    <h2 class="library-title">Document Library</h2>
+                    <button class="close-library" id="closeLibrary">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="library-content">
+                    <div class="document-grid" id="documentGrid">
+                        <!-- Sample documents -->
+                        <div class="document-card">
+                            <div class="document-icon pdf">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="document-title">Machine Learning Basics</div>
+                            <div class="document-meta">
+                                <span>PDF</span>
+                                <span>2.3 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon doc">
+                                <i class="fas fa-file-word"></i>
+                            </div>
+                            <div class="document-title">Business Strategy Guide</div>
+                            <div class="document-meta">
+                                <span>DOCX</span>
+                                <span>1.8 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon ppt">
+                                <i class="fas fa-file-powerpoint"></i>
+                            </div>
+                            <div class="document-title">Data Visualization Techniques</div>
+                            <div class="document-meta">
+                                <span>PPTX</span>
+                                <span>4.1 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon txt">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="document-title">Research Notes</div>
+                            <div class="document-meta">
+                                <span>TXT</span>
+                                <span>0.5 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon pdf">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="document-title">Physics Equations Reference</div>
+                            <div class="document-meta">
+                                <span>PDF</span>
+                                <span>3.2 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon doc">
+                                <i class="fas fa-file-word"></i>
+                            </div>
+                            <div class="document-title">History Essay Draft</div>
+                            <div class="document-meta">
+                                <span>DOCX</span>
+                                <span>1.2 MB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empty state (hidden by default, show when no documents) -->
+                    <div class="empty-library" style="display: none;" id="emptyLibrary">
+                        <div class="empty-icon">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <div class="empty-title">No documents yet</div>
+                        <div class="empty-subtitle">Upload your first document to start building your library</div>
+                        <button class="upload-now-btn" id="uploadFromLibrary">Upload Document</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="upload-interface" id="uploadInterface">
+        <div class="upload-modal">
+            <div class="upload-header">
+                <h2 class="upload-title">Upload Document</h2>
+                <button class="close-upload" id="closeUpload">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <form class="upload-form" id="uploadForm">
+                
+                
+
+               
+                <!-- File Upload Zone -->
+                <div class="form-group">
+                    <label class="form-label">
+                        Select File <span class="required">*</span>
+                    </label>
+                    <div class="upload-dropzone" id="dropzone">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="upload-text">Drag and drop your file here</div>
+                        <div class="upload-subtext">or click to browse files</div>
+                        
+                        <div class="upload-formats">
+                            <span class="format-tag">PDF</span>
+                            <span class="format-tag">DOC</span>
+                            <span class="format-tag">DOCX</span>
+                            <span class="format-tag">TXT</span>
+                            <span class="format-tag">PPT</span>
+                            <span class="format-tag">PPTX</span>
+                        </div>
+
+                        <button type="button" class="browse-btn" id="browseBtn">Browse Files</button>
+                        <input type="file" class="file-input" id="fileInput" name="document" accept=".pdf,.doc,.docx,.txt,.ppt,.pptx" required />
+                        
+                        <div class="selected-file" id="selectedFile">
+                            <i class="fas fa-file-alt"></i>
+                            <span id="fileName"></span>
+                            <i class="fas fa-times" id="removeFile" style="margin-left: auto; cursor: pointer;"></i>
+                        </div>
+                    </div>
+                    <div class="error-message" id="fileError"></div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="upload-progress" id="uploadProgress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Uploading... 0%</div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">
+                        <i class="fas fa-times"></i>
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
+                        <i class="fas fa-upload"></i>
+                        Upload Document
+                    </button>
+                </div>
+            </form>
+
+
+         </div>
+
+    <script src="/static/js/script.js"></script>
+    <script src="/static/js/quiz.js"></script>
+
+</body>
+</html>

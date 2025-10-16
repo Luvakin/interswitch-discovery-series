@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perez AI - Document Library</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="img/icon_perez.png" type="image/x-icon">
+     <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/static/img/chat_logo.png" width="50px" alt="">
+                
+                <button class="close-sidebar" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+                
+
+                <a style="text-decoration: none;" href="index.html"> <div class="nav-item">
+                    <i class="fas fa-home"></i>
+                    Home
+                </div>
+                </a>
+                
+                <a style="text-decoration: none;" href="doc.html"> 
+                <div class="nav-item">
+                    <i class="fas fa-layer-group"></i>
+                    Document House
+                </div>
+                </a>
+
+                <div class="recents-section">
+                    <div class="recents-header">Recents</div>
+                    
+                    <div class="recent-item design">
+                        Build a Design Syste...
+                    </div>
+                    
+                    <div class="recent-item ux">
+                        User Experience (UX...
+                    </div>
+                    
+                    <div class="recent-item holes">
+                        Black Holes Explaine...
+                    </div>
+                    
+                    <div class="recent-item mixtral">
+                        Mixtral 8x7B Archive...
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="upgrade-section">
+                    <div class="upgrade-title">Upgrade Plan</div>
+                    <div class="upgrade-info">1 Document left for this month</div>
+                    <button class="upgrade-btn">Upgrade to Pro</button>
+                </div>
+
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar">CL</div>
+                    <div class="user-name">Cyber Large</div>
+                    <i class="fas fa-chevron-down user-chevron"></i>
+                    
+                    <!-- User Dropdown Menu -->
+                    <div class="user-dropdown" id="userDropdown">
+                        
+                        <div class="dropdown-item">
+                            <i class="fas fa-credit-card"></i>
+                            Billing
+                        </div>
+                        
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sign Out
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <button class="hamburger" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search documents..." />
+            </div>
+        </div>
+
+
+        
+        <!-- Main Content - Document Library -->
+        <div class="library-main-content">
+            <!-- Library Header -->
+            <div class="library-header-section">
+                <div class="library-title-area">
+                    <h1 class="library-main-title">Document Library</h1>
+                    <span class="document-count">12 documents</span>
+                </div>
+
+                <div class="library-actions">
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+
+                    <div class="sort-dropdown">
+                        <button class="sort-btn" id="sortBtn">
+                            <i class="fas fa-sort"></i>
+                            <span>Sort by Date</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="sort-menu" id="sortMenu">
+                            <div class="sort-option active" data-sort="date">
+                                <i class="fas fa-check"></i>
+                                Date Modified
+                            </div>
+                            <div class="sort-option" data-sort="name">
+                                <i class="fas fa-check" style="opacity: 0;"></i>
+                                Name
+                            </div>
+                            <div class="sort-option" data-sort="size">
+                                <i class="fas fa-check" style="opacity: 0;"></i>
+                                File Size
+                            </div>
+                            <div class="sort-option" data-sort="type">
+                                <i class="fas fa-check" style="opacity: 0;"></i>
+                                File Type
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    
+                </div>
+
+                
+            </div>
+
+            <!-- Documents Grid View -->
+            <div class="documents-grid" id="documentsGrid">
+                <div class="document-card-enhanced" data-type="pdf" data-status="ready">
+                    <div class="document-header">
+                        <div class="document-icon-large pdf">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="document-menu">
+                            <button class="document-menu-btn">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div class="document-dropdown">
+                                <div class="dropdown-option">
+                                    <i class="fas fa-eye"></i>
+                                    View Document
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-play"></i>
+                                    Start Study Session
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-edit"></i>
+                                    Rename
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-copy"></i>
+                                    Duplicate
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="document-title-enhanced">Research Notes Collection</div>
+                    <div class="document-description">Compiled research notes from various academic papers on cognitive psychology and learning methodologies.</div>
+                    
+                    <div class="document-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>8 pages</span>
+                        </div>
+                       
+                    </div>
+
+                    <div class="document-footer">
+                        <div class="document-meta-enhanced">
+                            <span>TXT • 0.5 MB</span>
+                            
+                        </div>
+                        <div class="document-actions">
+                            <a href="index.html"> <button class="action-btn-small">Study</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="document-card-enhanced" data-type="pdf" data-status="ready">
+                    <div class="document-header">
+                        <div class="document-icon-large pdf">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="document-menu">
+                            <button class="document-menu-btn">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div class="document-dropdown">
+                                <div class="dropdown-option">
+                                    <i class="fas fa-eye"></i>
+                                    View Document
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-play"></i>
+                                    Start Study Session
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-edit"></i>
+                                    Rename
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-copy"></i>
+                                    Duplicate
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="document-title-enhanced">Physics Equations Reference</div>
+                    <div class="document-description">Complete reference guide for advanced physics equations covering mechanics, thermodynamics, and quantum physics.</div>
+                    
+                    <div class="document-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>67 pages</span>
+                        </div>
+                        
+                    </div>
+
+                    <div class="document-footer">
+                        <div class="document-meta-enhanced">
+                            <span>PDF • 3.2 MB</span>
+                           
+                        </div>
+                        <div class="document-actions">
+                           <a href="index.html"> <button class="action-btn-small">Study</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="document-card-enhanced" data-type="doc" data-status="ready">
+                    <div class="document-header">
+                        <div class="document-icon-large doc">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <div class="document-menu">
+                            <button class="document-menu-btn">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div class="document-dropdown">
+                                <div class="dropdown-option">
+                                    <i class="fas fa-eye"></i>
+                                    View Document
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-play"></i>
+                                    Start Study Session
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-edit"></i>
+                                    Rename
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-copy"></i>
+                                    Duplicate
+                                </div>
+                                <div class="dropdown-option">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="document-title-enhanced">History Essay Draft</div>
+                    <div class="document-description">Draft essay on the Industrial Revolution and its impact on modern society and economic structures.</div>
+                    
+                    <div class="document-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>15 pages</span>
+                        </div>
+                       
+                    </div>
+
+                    <div class="document-footer">
+                        <div class="document-meta-enhanced">
+                            <span>DOCX • 1.2 MB</span>
+                            
+                        </div>
+                        <div class="document-actions">
+                            <a href="index.html"> <button class="action-btn-small">Study</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <!-- Documents List View -->
+            <div class="documents-list" id="documentsList">
+                <div class="list-header">
+                    <div>Document</div>
+                    <div>Type</div>
+                    <div>Size</div>
+                    <div>Modified</div>
+                    <div>Status</div>
+                </div>
+
+                <a style="text-decoration: none;" href="index.html">
+                <div class="document-row" data-type="pdf" data-status="ready">
+                    <div class="row-document-info">
+                        <div class="row-document-icon pdf">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="row-document-details">
+                            <div class="row-document-title">Machine Learning Fundamentals</div>
+                            <div class="row-document-description">Comprehensive guide to machine learning algorithms and neural networks</div>
+                        </div>
+                    </div>
+                    <div class="row-cell">PDF</div>
+                    <div class="row-cell">2.3 MB</div>
+                    <div class="row-cell">2 days ago</div>
+                    <div class="row-cell">
+                        <span class="status-badge ready">Ready</span>
+                    </div>
+                </div>
+
+                </a>
+
+                <a style="text-decoration: none;" href="index.html">
+                <div class="document-row" data-type="doc" data-status="ready">
+                    <div class="row-document-info">
+                        <div class="row-document-icon doc">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <div class="row-document-details">
+                            <div class="row-document-title">Business Strategy Template</div>
+                            <div class="row-document-description">Strategic planning framework for businesses</div>
+                        </div>
+                    </div>
+                    <div class="row-cell">DOCX</div>
+                    <div class="row-cell">1.8 MB</div>
+                    <div class="row-cell">1 week ago</div>
+                    <div class="row-cell">
+                        <span class="status-badge ready">Ready</span>
+                    </div>
+                </div>
+                </a>
+
+                <a style="text-decoration: none;" href="index.html">
+                <div class="document-row" data-type="ppt" data-status="processing">
+                    <div class="row-document-info">
+                        <div class="row-document-icon ppt">
+                            <i class="fas fa-file-powerpoint"></i>
+                        </div>
+                        <div class="row-document-details">
+                            <div class="row-document-title">Data Visualization Best Practices</div>
+                            <div class="row-document-description">Advanced techniques for creating compelling charts</div>
+                        </div>
+                    </div>
+                    <div class="row-cell">PPTX</div>
+                    <div class="row-cell">4.1 MB</div>
+                    <div class="row-cell">Today</div>
+                    <div class="row-cell">
+                        <span class="status-badge processing">Processing</span>
+                    </div>
+                </div>
+                </a>
+ 
+                <a style="text-decoration: none;" href="index.html">
+                <div class="document-row" data-type="txt" data-status="ready">
+                    <div class="row-document-info">
+                        <div class="row-document-icon txt">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="row-document-details">
+                            <div class="row-document-title">Research Notes Collection</div>
+                            <div class="row-document-description">Compiled research notes from academic papers</div>
+                        </div>
+                    </div>
+                    <div class="row-cell">TXT</div>
+                    <div class="row-cell">0.5 MB</div>
+                    <div class="row-cell">3 days ago</div>
+                    <div class="row-cell">
+                        <span class="status-badge ready">Ready</span>
+                    </div>
+                </div>
+                </a>
+
+                 <a style="text-decoration: none;" href="index.html">
+                <div class="document-row" data-type="pdf" data-status="ready">
+                    <div class="row-document-info">
+                        <div class="row-document-icon pdf">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="row-document-details">
+                            <div class="row-document-title">Physics Equations Reference</div>
+                            <div class="row-document-description">Complete reference guide for advanced physics</div>
+                        </div>
+                    </div>
+                    <div class="row-cell">PDF</div>
+                    <div class="row-cell">3.2 MB</div>
+                    <div class="row-cell">5 days ago</div>
+                    <div class="row-cell">
+                        <span class="status-badge ready">Ready</span>
+                    </div>
+                </div>
+                </a>
+
+                 <a style="text-decoration: none;" href="index.html">
+                <div class="document-row" data-type="doc" data-status="ready">
+                    <div class="row-document-info">
+                        <div class="row-document-icon doc">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <div class="row-document-details">
+                            <div class="row-document-title">History Essay Draft</div>
+                            <div class="row-document-description">Essay on the Industrial Revolution impact</div>
+                        </div>
+                    </div>
+                    <div class="row-cell">DOCX</div>
+                    <div class="row-cell">1.2 MB</div>
+                    <div class="row-cell">1 week ago</div>
+                    <div class="row-cell">
+                        <span class="status-badge ready">Ready</span>
+                    </div>
+                </div>
+                </a>
+
+
+
+                <a style="text-decoration: none;" href="index.html">
+                <div class="document-row" data-type="pdf" data-status="ready">
+                    <div class="row-document-info">
+                        <div class="row-document-icon pdf">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="row-document-details">
+                            <div class="row-document-title">Machine Learning Fundamentals</div>
+                            <div class="row-document-description">Comprehensive guide to machine learning algorithms and neural networks</div>
+                        </div>
+                    </div>
+                    <div class="row-cell">PDF</div>
+                    <div class="row-cell">2.3 MB</div>
+                    <div class="row-cell">2 days ago</div>
+                    <div class="row-cell">
+                        <span class="status-badge ready">Ready</span>
+                    </div>
+                </div>
+
+                </a>
+
+
+
+                <a style="text-decoration: none;" href="index.html">
+                <div class="document-row" data-type="pdf" data-status="ready">
+                    <div class="row-document-info">
+                        <div class="row-document-icon pdf">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="row-document-details">
+                            <div class="row-document-title">Machine Learning Fundamentals</div>
+                            <div class="row-document-description">Comprehensive guide to machine learning algorithms and neural networks</div>
+                        </div>
+                    </div>
+                    <div class="row-cell">PDF</div>
+                    <div class="row-cell">2.3 MB</div>
+                    <div class="row-cell">2 days ago</div>
+                    <div class="row-cell">
+                        <span class="status-badge ready">Ready</span>
+                    </div>
+                </div>
+
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <script src="js/doc.js"></script>
+
+</body>
+</html>
