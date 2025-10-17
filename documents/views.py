@@ -120,3 +120,8 @@ def upload_document(request):
             'recent_documents':recent_documents
             })
 
+
+
+
+def chat(request):
+    return render(request, 'chat.html')

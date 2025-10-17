@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.upload_document, name="home"),
+    path('chat/', views.chat, name='chat')
     
 ]
 
