@@ -1,0 +1,339 @@
+    {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perez AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="{% static 'img/icon_perez.png' %}" type="image/x-icon">
+     <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="{% static '/img/chat_logo.png' %}" width="50px" alt="">
+                
+                <button class="close-sidebar" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+                <button class="start-new-btn" id="uploadBtn">
+                    <i class="fas fa-plus"></i>
+                    Upload Document
+                    <span class="shortcut"><i class="fas fa-file"></i></span>
+                </button>
+
+                <div class="nav-item" id="libraryBtn">
+                    <i class="fas fa-book"></i>
+                    Documents
+                </div>
+                
+                <a style="text-decoration: none;" href="doc.html"> 
+                <div class="nav-item">
+                    <i class="fas fa-layer-group"></i>
+                    Document House
+                </div>
+                </a>
+
+                <div class="recents-section">
+                    <div class="recents-header">Recents</div>
+                    
+                    <!-- <div class="recent-item design">
+                        Build a Design Syste...
+                    </div>
+                    
+                    <div class="recent-item ux">
+                        User Experience (UX...
+                    </div>
+                    
+                    <div class="recent-item holes">
+                        Black Holes Explaine...
+                    </div>
+                    
+                    <div class="recent-item mixtral">
+                        Mixtral 8x7B Archive...
+                    </div> -->
+                    {%if recent_documents%}
+                        {%for doc in recent_documents%}
+                        <div class="recent-item holes"></div>
+                        {% if doc.name|length > 20%}
+                            {{doc.name|truncatewords:3}}...
+                        {%else%}
+                            {{doc.name}}
+                        {%endif%}
+                        {%endfor%}
+                    {%else%}  
+                    <div style="text-align: center; padding: 20px; color: #999;">
+                         No documents yet
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="upgrade-section">
+                    <div class="upgrade-title">Upgrade Plan</div>
+                    <div class="upgrade-info">1 Document left for this month</div>
+                    <button class="upgrade-btn">Upgrade to Pro</button>
+                </div>
+
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar">CL</div>
+                    <div class="user-name">Cyber Large</div>
+                    <i class="fas fa-chevron-down user-chevron"></i>
+                    
+                    <!-- User Dropdown Menu -->
+                    <div class="user-dropdown" id="userDropdown">
+                       
+                        <div class="dropdown-item">
+                            <i class="fas fa-credit-card"></i>
+                            Billing
+                        </div>
+                        
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sign Out
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <button class="hamburger" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search documents..." />
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="hero-section">
+                <h1 class="hero-title">Learn Efficiently, Succeed Easily</h1>
+                <p class="hero-subtitle">Upload your documents or choose from existing ones to get started with AI-powered studying.</p>
+            </div>
+
+            <div class="action-buttons">
+                <div class="action-btn" id="uploadDocumentBtn">
+                    <i class="fas fa-file-upload"></i>
+                    <span>Upload Document</span>
+                </div>
+                
+                <div class="action-btn" id="libraryMainBtn">
+                    <i class="fas fa-folder-open"></i>
+                    <span>Choose from Library</span>
+                </div>
+            </div>
+
+            <!-- <div class="chat-divider">Or Choose to Chat Instead</div>
+
+            <div class="chat-input-container">
+                <textarea class="chat-input" placeholder="Ask anything..." rows="1"></textarea>
+                <div class="chat-actions">
+                    <button class="chat-action-btn send-btn">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                </div>
+            </div> -->
+        </div>
+
+        <!-- Document Library Interface -->
+        <div class="document-library" id="documentLibrary">
+            <div class="library-modal">
+                <div class="library-header">
+                    <h2 class="library-title">Document Library</h2>
+                    <button class="close-library" id="closeLibrary">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="library-content">
+                    <div class="document-grid" id="documentGrid">
+                        <!-- Sample documents -->
+                        <div class="document-card">
+                            <div class="document-icon pdf">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="document-title">Machine Learning Basics</div>
+                            <div class="document-meta">
+                                <span>PDF</span>
+                                <span>2.3 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon doc">
+                                <i class="fas fa-file-word"></i>
+                            </div>
+                            <div class="document-title">Business Strategy Guide</div>
+                            <div class="document-meta">
+                                <span>DOCX</span>
+                                <span>1.8 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon ppt">
+                                <i class="fas fa-file-powerpoint"></i>
+                            </div>
+                            <div class="document-title">Data Visualization Techniques</div>
+                            <div class="document-meta">
+                                <span>PPTX</span>
+                                <span>4.1 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon txt">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="document-title">Research Notes</div>
+                            <div class="document-meta">
+                                <span>TXT</span>
+                                <span>0.5 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon pdf">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="document-title">Physics Equations Reference</div>
+                            <div class="document-meta">
+                                <span>PDF</span>
+                                <span>3.2 MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon doc">
+                                <i class="fas fa-file-word"></i>
+                            </div>
+                            <div class="document-title">History Essay Draft</div>
+                            <div class="document-meta">
+                                <span>DOCX</span>
+                                <span>1.2 MB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empty state (hidden by default, show when no documents) -->
+                    <div class="empty-library" style="display: none;" id="emptyLibrary">
+                        <div class="empty-icon">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <div class="empty-title">No documents yet</div>
+                        <div class="empty-subtitle">Upload your first document to start building your library</div>
+                        <button class="upload-now-btn" id="uploadFromLibrary">Upload Document</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="upload-interface" id="uploadInterface">
+        <div class="upload-modal">
+            <div class="upload-header">
+                <h2 class="upload-title">Upload Document</h2>
+                <button class="close-upload" id="closeUpload">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <form class="upload-form" id="uploadForm">
+               
+                {% csrf_token %}
+
+                <!-- File Upload Zone -->
+                <div class="form-group">
+                    <label class="form-label">
+                        Select File <span class="required">*</span>
+                    </label>
+                    <div class="upload-dropzone" id="dropzone">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="upload-text">Drag and drop your file here</div>
+                        <div class="upload-subtext">or click to browse files</div>
+                        
+                        <div class="upload-formats">
+                            <span class="format-tag">PDF</span>
+                            <span class="format-tag">DOC</span>
+                            <span class="format-tag">DOCX</span>
+                            <span class="format-tag">TXT</span>
+                            <span class="format-tag">PPT</span>
+                            <span class="format-tag">PPTX</span>
+                        </div>
+
+                        <button type="button" class="browse-btn" id="browseBtn">Browse Files</button>
+                        <input type="file" class="file-input" id="fileInput" name="documentName" accept=".pdf,.doc,.docx,.txt,.ppt,.pptx" required />
+                        
+                        <div class="selected-file" id="selectedFile">
+                            <i class="fas fa-file-alt"></i>
+                            <span id="fileName"></span>
+                            <i class="fas fa-times" id="removeFile" style="margin-left: auto; cursor: pointer;"></i>
+                        </div>
+                    </div>
+                    <div class="error-message" id="fileError"></div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="upload-progress" id="uploadProgress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Uploading... 0%</div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">
+                        <i class="fas fa-times"></i>
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <i class="fas fa-upload"></i>
+                        Upload Document
+                    </button>
+                </div>
+
+                <!-- Upload Success Message -->
+                <div class="upload-success" id="uploadSuccess" style="display: none;">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="success-title">Upload Complete!</div>
+                    <div class="success-subtext">Your document has been uploaded successfully.</div>
+                    <div class="success-actions">
+                        <button class="btn primary">Start Studying</button>
+                        <button class="btn secondary">Upload Another</button>
+                    </div>
+                </div>
+            </form>
+
+
+         </div>
+    
+    <script>
+        window.endpoints = {
+            home: "{% url 'home' %}",
+
+        };
+    </script>
+
+    <script src="{% static '/js/script.js' %}"></script>
+</body>
+</html>
